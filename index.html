@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Jardin de Berlin - Catalogue</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #555;
+        }
+        .logo {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+        .catalogue-container {
+            position: relative;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .catalogue-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.5s ease-in-out;
+        }
+        .navigation-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 5px;
+            font-size: 24px;
+        }
+        #prevBtn {
+            left: 10px;
+        }
+        #nextBtn {
+            right: 10px;
+        }
+        .contact-info {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="site_logo.png" alt="Le Jardin de Berlin Logo" class="logo">
+        <h1>Le Jardin de Berlin</h1>
+        <p>Cosmétiques de Berlin</p>
+        <p>Découvrez notre gamme de produits cosmétiques et de bien-être importés d'Allemagne. Retrouvez notre catalogue complet ci-dessous!</p>
+        
+        <div class="catalogue-container">
+            <img id="cataloguePage" class="catalogue-image" src="1.png" alt="Catalogue Page 1">
+            <button id="prevBtn" class="navigation-button">&#10094;</button>
+            <button id="nextBtn" class="navigation-button">&#10095;</button>
+        </div>
+
+        <div class="contact-info">
+            <p>Pour toute demande, vous pouvez nous contacter à l'adresse suivante :</p>
+            <p>Instagram: @lejardindeberlin</p>
+            <p>Email: lejardindeberlin.officiel@gmail.com</p>
+        </div>
+    </div>
+
+    <script>
+        const cataloguePage = document.getElementById('cataloguePage');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        const pages = [
+            '1.png', 
+            '2.png',
+            '3.png',
+            '4.png'
+        ];
+        
+        let currentPageIndex = 0;
+
+        function updateButtons() {
+            prevBtn.style.display = (currentPageIndex === 0) ? 'none' : 'block';
+            nextBtn.style.display = (currentPageIndex === pages.length - 1) ? 'none' : 'block';
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentPageIndex > 0) {
+                currentPageIndex--;
+                cataloguePage.src = pages[currentPageIndex];
+                updateButtons();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentPageIndex < pages.length - 1) {
+                currentPageIndex++;
+                cataloguePage.src = pages[currentPageIndex];
+                updateButtons();
+            }
+        });
+
+        // Initialize the button visibility on page load
+        updateButtons();
+    </script>
+</body>
+</html>
